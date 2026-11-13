@@ -1,0 +1,11 @@
+# robots.txt tells search engine bots which pages they may visit.
+# Note: this is a polite request, not security. Bots can ignore it.
+
+# Applies to every bot
+User-agent: *
+
+# The sign-in page may be listed in search results
+Allow: /
+
+# Keep the data API out of search results
+Disallow: /api/
