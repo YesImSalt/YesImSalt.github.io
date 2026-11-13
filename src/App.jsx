@@ -44,13 +44,17 @@ export default function App() {
 
     try {
       const response = await fetch('/api/appointments');
-      setAppointments(await response.json());
+      if (!response.ok) throw new Error('Could not load appointments.');
+      const records = await response.json();
+      setAppointments(records);
+      return records;
     } catch {
       // Show an error if the server cannot be reached.
       say('Cannot reach the server. Make sure it is running, then try again.', true);
+      return null;
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   // Load appointments after sign-in.
@@ -113,10 +117,18 @@ export default function App() {
   }
 
   // Refresh the list after saving an appointment.
-  async function saved(patient) {
-    await loadAppointments();
+  async function saved(appointment, confirmSaved = false) {
+    const records = await loadAppointments();
+    const exists = records?.some(record =>
+      record.patient.toLowerCase() === appointment.patient.trim().toLowerCase() &&
+      record.date === appointment.date &&
+      record.time === appointment.time
+    );
+    if (confirmSaved && !exists) return false;
+
     go('list');
-    say('Appointment for ' + patient + ' was saved.');
+    say('Appointment for ' + appointment.patient + ' was saved.');
+    return true;
   }
 
   return (
