@@ -128,3 +128,12 @@ app.use((err, req, res, next) => res.status(400).json({ message: 'The request co
 // Hosting services choose the port and give it to us in process.env.PORT. Locally we use 3000.
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log('Clinic app running at http://localhost:' + PORT));
+
+// Only run app.listen locally, not on Vercel
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(3000, () => console.log('Server running'));
+}
+
+// Export the Express app for Vercel
+module.exports = app;
+
