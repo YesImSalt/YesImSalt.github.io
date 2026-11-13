@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- lang="en" tells screen readers and the search engine what the language of the site is -->
+<html lang="en">
+<head>
+  <!-- Makes the page scale properly on phones-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===== Simple SEO ===== -->
+  <!-- The title is the big blue link in search results. Keep it short and descriptive. -->
+  <title>Clinic Appointments | Book and manage patient visits</title>
+  <!-- the grey text under the title in google -->
+  <meta name="description" content="A simple tool for clinic staff to book, search and update patient appointments.">
+  <!-- Tells search engines they may list this page and follow its links -->
+  <meta name="robots" content="index, follow">
+  <!-- colors the bar on mobile browsers and some desktop extensions -->
+  <meta name="theme-color" content="#FFDBB7">
+  <!-- to control how the link looks when shared in social media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Clinic Appointments">
+  <meta property="og:description" content="Book, search and update patient appointments.">
+  <!-- the icon of the site cause I'm not making an image -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
+</head>
+<body>
+  <!-- the entire app from react will go here -->
+  <div id="root"></div>
+  <!-- incase javascript is switched off  -->
+  <noscript>Clinic Appointments needs JavaScript to run. Please turn it on in your browser settings.</noscript>
+  <!-- Starts the app-->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* Theme colors. */
+:root {
+  --maintext: #582C00;    /* Main text */
+  --smalltext: #7a4a1f;  /* Secondary text */
+  --line: #8a5a2b;   /* Input borders */
+  --edge: #e3c4a0;   /* Light borders */
+  --brand: #582C00;  /* Buttons and focus */
+  --error: #b3261e;    /* Errors */
+  --ok: #0b6b2d;     /* Success */
+}
+
+/* Include padding and borders in element widths. */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: 1rem/1.5 system-ui, Arial, sans-serif;
+  color: var(--maintext);
+  background: #FFF5EB;
+}
+
+/* Accessibility */
+
+/* Reveal the skip link on focus. */
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 0.5rem; top: 0.5rem; z-index: 9; background: #fff; padding: 0.5rem 1rem; border: 2px solid var(--brand); }
+
+/* Screen-reader-only text. */
+.sr { position: absolute; left: -999px; }
+
+/* Show keyboard focus clearly. */
+:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+main:focus { outline: none; }
+
+/* Layout */
+
+header {
+  background: #FFDBB7;
+  border-bottom: 2px solid var(--line);
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;                 /* Wrap on narrow screens. */
+  gap: 0.25rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo { margin: 0; font-weight: bold; font-size: 1.25rem; }
+nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.25rem; margin: 0; padding: 0; }
+
+/* Center the page content. */
+main { max-width: 72rem; margin: 0 auto; padding: 1rem; }
+h1 { font-size: 1.75rem; margin: 0.5rem 0 1rem; }
+h2 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; }
+
+/* Form and table surfaces. */
+form, .table-box { background: #FFF5EB; border: 1px solid var(--edge); border-radius: 6px; padding: 1rem; }
+
+/* Form controls */
+
+.field { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 1rem; } /* Stack label, field, and error. */
+label { font-weight: bold; }
+label.inline { display: block; font-weight: normal; margin: 0.4rem 0; }  /* Checkbox and radio labels. */
+input, select, textarea {
+  font: inherit;
+  color: inherit;
+  min-height: 2.75rem;            /* Easy to tap. */
+  padding: 0.4rem 0.6rem;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+  max-width: 30rem;
+  width: 100%;
+}
+input[type=radio], input[type=checkbox] { width: 1.25rem; height: 1.25rem; min-height: 0; vertical-align: -0.2rem; margin-right: 0.4rem; }
+fieldset { border: 0; margin: 0 0 1rem; padding: 0; min-width: 0; } /* Group related fields. */
+legend { font-weight: bold; padding: 0; margin-bottom: 0.25rem; }
+
+/* Errors */
+
+/* Add a warning label, not just a color change. */
+.erroror { color: var(--error); font-weight: bold; }
+.erroror:not(:empty)::before { content: "⚠ erroror: "; }
+/* Mark invalid fields with a thicker border. */
+[aria-invalid=true] { border-color: var(--error); border-width: 3px; }
+
+/* Buttons */
+
+.btn {
+  font: inherit; font-weight: bold; cursor: pointer;
+  min-height: 2.75rem; padding: 0.5rem 1.1rem;
+  border: 2px solid var(--brand); border-radius: 4px;
+  background: var(--brand); color: #FFF5EB;  /* Primary button. */
+}
+.btn.alt { background: #FFDBB7; color: var(--brand); } /* Alternate button. */
+.btn.link {
+  background: none; border-color: transparent; color: var(--brand);
+  text-decoration: none;                                   /* Underline only the active page. */
+  transition: background-color 0.2s ease;
+}
+.btn.link:hover { background: #FFF5EB; }
+.btn.link[aria-current] { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 0.3em; }
+.btn:disabled { background: #ead7c3; color: var(--smalltext); border-color: var(--line); cursor: progress; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+/* Status message */
+
+#message:not(:empty) { background: #fff; border: 2px solid var(--ok); border-radius: 6px; padding: 0.75rem 1rem; font-weight: bold; }
+#message.bad { border-color: var(--error); color: var(--error); }
+
+/* Dashboard */
+
+.dashboard-card { background: #FFF5EB; border: 1px solid var(--edge); border-radius: 6px; padding: 1rem; }
+
+/* Fit cards to the available width. */
+.stats { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 1rem; }
+.stats li { background: #FFF5EB; border: 1px solid var(--edge); border-radius: 6px; padding: 1rem; }
+.stats strong { display: block; font-size: 2rem; line-height: 1.2; }
+
+/* Appointment list */
+
+.filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 0 1rem; }
+/* Keep table scrolling inside its box. */
+.table-box { overflow: auto; max-height: 30rem; padding: 0; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #e3c4a0; vertical-align: top; }
+thead th { position: sticky; top: 0; background: #FFDBB7; } /* Keep headings visible while scrolling. */
+
+/* Smaller status dropdown. */
+.status-select { width: auto; min-height: 2.25rem; }
+
+/* Pagination buttons. */
+.pager { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin: 1rem 0; }
+.pager .btn { min-width: 2.75rem; padding: 0.5rem 0.75rem; }
+
+/* Clickable logo. */
+.logo-button {
+  font: inherit; font-size: 1.25rem; font-weight: bold; color: var(--maintext);
+  background: none; border: 0; border-radius: 4px; padding: 0.25rem 0.5rem; cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.logo-button:hover { background: #FFF5EB; }
+
+/* Respect reduced-motion settings. */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .logo-button { transition: none; }
+}
+
+/* Wrap long notes. */
+.notes-cell { width: 14rem; overflow-wrap: anywhere; }

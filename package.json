@@ -1,0 +1,23 @@
+{
+  "name": "clinic-records-react",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "deploy": "gh-pages -d dist",
+    "dev": "concurrently \"node server.js\" \"vite\"",
+    "build": "vite build",
+    "start": "vite build && node server.js"
+  },
+  
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "express": "^4.19.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^5.4.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "gh-pages": "^6.3.0"
+  }
+}
