@@ -117,18 +117,10 @@ export default function App() {
   }
 
   // Refresh the list after saving an appointment.
-  async function saved(appointment, confirmSaved = false) {
-    const records = await loadAppointments();
-    const exists = records?.some(record =>
-      record.patient.toLowerCase() === appointment.patient.trim().toLowerCase() &&
-      record.date === appointment.date &&
-      record.time === appointment.time
-    );
-    if (confirmSaved && !exists) return false;
-
+  async function saved(patient) {
+    await loadAppointments();
     go('list');
-    say('Appointment for ' + appointment.patient + ' was saved.');
-    return true;
+    say('Appointment for ' + patient + ' was saved.');
   }
 
   return (

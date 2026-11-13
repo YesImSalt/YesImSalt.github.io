@@ -51,13 +51,10 @@ export default function AddForm({ onSaved, say }) {
         document.getElementById(keys[0])?.focus(); // Focus it if it exists.
         say('Appointment not saved. Fix the ' + keys.length + ' error(s) below.', true);
       } else if (!res.ok) {
-        if (data.message === 'The request could not be read.' && await onSaved(form, true)) {
-          return;
-        }
         say(data.message, true);
       } else {
         // Refresh the list and show a confirmation.
-        await onSaved(form);
+        await onSaved(form.patient);
         return;
       }
     } catch {
