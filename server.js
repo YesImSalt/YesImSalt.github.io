@@ -23,10 +23,7 @@ const LATEST_DATE = '2038-01-19';
 const dist = path.join(__dirname, 'dist');
 
 // Middleware: runs on every request before our routes.
-// Vercel parses request bodies before invoking the app; locally, Express does it.
-if (!process.env.VERCEL) {
-  app.use(express.json({ limit: '50kb' }));
-}
+app.use(express.json({ limit: '50kb' })); // turns a JSON request body into req.body
 app.use(express.static(dist));            // serves the website files (index.html, JS, CSS)
 
 // ---------- Helpers ----------
@@ -137,4 +134,3 @@ if (require.main === module) {
 
 // Export the Express app for Vercel
 module.exports = app;
-
